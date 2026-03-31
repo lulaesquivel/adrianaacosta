@@ -94,6 +94,33 @@
     }
     .nav-cta:hover { background: var(--celeste-hero-dark) !important; color: var(--negro) !important; }
 
+    /* Hamburguesa */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px 0;
+    }
+    .hamburger span {
+      width: 24px;
+      height: 2px;
+      background: var(--negro);
+      border-radius: 1px;
+      transition: all 0.3s ease;
+    }
+    .hamburger.active span:nth-child(1) {
+      transform: rotate(45deg) translate(10px, 10px);
+    }
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+    .hamburger.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(7px, -7px);
+    }
+
     /* ═══════════════════════════════════════
        HERO
     ═══════════════════════════════════════ */
@@ -394,9 +421,9 @@
       font-weight: 600;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: #2A7A7A;
-      background: var(--celeste-light);
-      border: 1px solid var(--celeste);
+      color: #ff9f9f;
+      background color: #ff9f9f;
+      border: 1px solid var(#FFF3CC);
       padding: 3px 10px;
       border-radius: 100px;
       margin-bottom: 10px;
@@ -627,8 +654,48 @@
        RESPONSIVE
     ═══════════════════════════════════════ */
     @media (max-width: 768px) {
-      nav { padding: 14px 20px; }
-      .nav-links { display: none; }
+      nav { 
+        padding: 14px 20px;
+      }
+      .hamburger {
+        display: flex;
+      }
+      .nav-links { 
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: rgba(168, 201, 216, 0.98);
+        backdrop-filter: blur(10px);
+        flex-direction: column;
+        gap: 0;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+        list-style: none;
+        border-bottom: 1px solid rgba(26, 26, 26, 0.08);
+      }
+      .nav-links.active {
+        max-height: 500px;
+      }
+      .nav-links li {
+        border-bottom: 1px solid rgba(26, 26, 26, 0.04);
+      }
+      .nav-links a {
+        display: block;
+        padding: 14px 20px;
+        font-size: 0.75rem;
+      }
+      .nav-links a:not(.nav-cta) {
+        padding-right: 20px;
+      }
+      .nav-cta {
+        background: var(--celeste) !important;
+        color: var(--blanco) !important;
+        margin: 8px 20px;
+        display: inline-block;
+        padding: 8px 20px !important;
+      }
       section { padding: 64px 20px; }
 
       .hero-main { grid-template-columns: 1fr; padding: 90px 20px 48px; gap: 32px; }
@@ -654,8 +721,12 @@
 
   <!-- NAV -->
   <nav>
-
-    <ul class="nav-links">
+    <button class="hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
       <li><a href="#about">Sobre mí</a></li>
       <li><a href="#work">Proyectos</a></li>
       <li><a href="#education">Formación</a></li>
@@ -706,78 +777,7 @@
       <span class="section-eyebrow">✦ Selected Work</span>
       <h2 class="titulo-verde">Proyectos</h2>
       
-      <!-- ESCUELA ESPECIAL ALAS -->
-      <div class="institution-group">
-        <div class="institution-header">
-          <span class="institution-name">Escuela Especial Alas</span>
-          <a href="https://www.instagram.com/escuelaespecialalas/?hl=es" class="institution-link" target="_blank" rel="noopener">ver institución ↗</a>
-        </div>
-        <div class="projects-grid">
-
-          <div class="project-card">
-            <div class="project-card-header">
-              <div class="project-title">Estrategias de Inclusión y Autonomía</div>
-            </div>
-            <div class="project-card-body">
-              <div class="project-block">
-                <span class="project-tag tag-desafio">El Desafío</span>
-                <p>Garantizar trayectorias educativas significativas para alumnos con Trastornos del Espectro Autista (TEA), transformando las barreras del entorno en oportunidades de aprendizaje y desarrollo integral.</p>
-              </div>
-              <div class="project-block">
-                <span class="project-tag tag-intervencion">Mi Intervención</span>
-                <ul>
-                  <li>Diseño de dispositivos pedagógicos individualizados adaptados a cada alumno</li>
-                  <li>Articulación con equipos de profesionales externos para una mirada 360°</li>
-                  <li>Acompañamiento estratégico a familias con herramientas concretas</li>
-                  <li>Confección de informes pedagógicos y de seguimiento</li>
-                </ul>
-              </div>
-              <div class="project-block">
-                <span class="project-tag tag-impacto">El Impacto</span>
-                <p>Implementación exitosa de adaptaciones curriculares que permitieron a los alumnos habitar el espacio escolar con mayor seguridad y protagonismo, consolidando un entorno inclusivo y profesionalizado.</p>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-      <!-- CONSULTORIO PRIVADO -->
-      <div class="institution-group">
-        <div class="institution-header">
-          <span class="institution-name">Consultorio Privado</span>
-        </div>
-        <div class="projects-grid">
-
-          <div class="project-card">
-            <div class="project-card-header">
-              <span class="project-role-badge">Psicóloga Clínica</span>
-              <div class="project-title">Clínica y Abordaje Psicoterapéutico</div>
-            </div>
-            <div class="project-card-body">
-              <div class="project-block">
-                <span class="project-tag tag-desafio">El Desafío</span>
-                <p>Brindar un espacio de salud mental capaz de adaptarse a las particularidades de niños, jóvenes y adultos, transformando el malestar subjetivo en procesos de autoconocimiento.</p>
-              </div>
-              <div class="project-block">
-                <span class="project-tag tag-intervencion">Mi Intervención</span>
-                <ul>
-                  <li>Psicoterapia individual enfocada en la singularidad de cada caso</li>
-                  <li>Planes de intervención específicos para cada etapa evolutiva</li>
-                  <li>Coordinación con otros profesionales de la salud cuando el caso lo requiere</li>
-                </ul>
-              </div>
-              <div class="project-block">
-                <span class="project-tag tag-impacto">El Impacto</span>
-                <p>Consolidación de un espacio clínico basado en la rigurosidad técnica y el compromiso, donde el proceso terapéutico se traduce en una mejora sostenida de la calidad de vida y el equilibrio emocional.</p>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-      <!-- PORT SCHOOL -->
+           <!-- PORT SCHOOL -->
       <div class="institution-group">
         <div class="institution-header">
           <span class="institution-name">Port School</span>
@@ -863,6 +863,79 @@
         </div>
       </div>
 
+      <!-- CONSULTORIO PRIVADO -->
+      <div class="institution-group">
+        <div class="institution-header">
+          <span class="institution-name">Consultorio Privado</span>
+        </div>
+        <div class="projects-grid">
+
+          <div class="project-card">
+            <div class="project-card-header">
+              <span class="project-role-badge">Psicóloga Clínica</span>
+              <div class="project-title">Clínica y Abordaje Psicoterapéutico</div>
+            </div>
+            <div class="project-card-body">
+              <div class="project-block">
+                <span class="project-tag tag-desafio">El Desafío</span>
+                <p>Brindar un espacio de salud mental capaz de adaptarse a las particularidades de niños, jóvenes y adultos, transformando el malestar subjetivo en procesos de autoconocimiento.</p>
+              </div>
+              <div class="project-block">
+                <span class="project-tag tag-intervencion">Mi Intervención</span>
+                <ul>
+                  <li>Psicoterapia individual enfocada en la singularidad de cada caso</li>
+                  <li>Planes de intervención específicos para cada etapa evolutiva</li>
+                  <li>Coordinación con otros profesionales de la salud cuando el caso lo requiere</li>
+                </ul>
+              </div>
+              <div class="project-block">
+                <span class="project-tag tag-impacto">El Impacto</span>
+                <p>Consolidación de un espacio clínico basado en la rigurosidad técnica y el compromiso, donde el proceso terapéutico se traduce en una mejora sostenida de la calidad de vida y el equilibrio emocional.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+
+ <!-- ESCUELA ESPECIAL ALAS -->
+      <div class="institution-group">
+        <div class="institution-header">
+          <span class="institution-name">Escuela Especial Alas</span>
+          <a href="https://www.instagram.com/escuelaespecialalas/?hl=es" class="institution-link" target="_blank" rel="noopener">ver institución ↗</a>
+        </div>
+        <div class="projects-grid">
+
+          <div class="project-card">
+            <div class="project-card-header">
+                            <span class="project-role-badge">Docente y Acompampañante terapéutico</span>
+
+              <div class="project-title">Estrategias de Inclusión y Autonomía</div>
+            </div>
+            <div class="project-card-body">
+              <div class="project-block">
+                <span class="project-tag tag-desafio">El Desafío</span>
+                <p>Garantizar trayectorias educativas significativas para alumnos con Trastornos del Espectro Autista (TEA), transformando las barreras del entorno en oportunidades de aprendizaje y desarrollo integral.</p>
+              </div>
+              <div class="project-block">
+                <span class="project-tag tag-intervencion">Mi Intervención</span>
+                <ul>
+                  <li>Diseño de dispositivos pedagógicos individualizados adaptados a cada alumno</li>
+                  <li>Articulación con equipos de profesionales externos para una mirada 360°</li>
+                  <li>Acompañamiento estratégico a familias con herramientas concretas</li>
+                  <li>Confección de informes pedagógicos y de seguimiento</li>
+                </ul>
+              </div>
+              <div class="project-block">
+                <span class="project-tag tag-impacto">El Impacto</span>
+                <p>Implementación exitosa de adaptaciones curriculares que permitieron a los alumnos habitar el espacio escolar con mayor seguridad y protagonismo, consolidando un entorno inclusivo y profesionalizado.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
     </div>
   </section>
 
@@ -982,6 +1055,25 @@
     },
     "knowsAbout": ["Psicología Organizacional", "Psicología Clínica", "Selección de Personal", "Cultura Organizacional", "Liderazgo", "Diagnóstico Organizacional", "Educación Inclusiva", "TEA"]
   }
+  </script>
+
+  <script>
+    // Hamburger menu toggle
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      navLinks.classList.toggle('active');
+    });
+
+    // Cerrar menú al hacer click en un link
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        navLinks.classList.remove('active');
+      });
+    });
   </script>
 
 </body>
