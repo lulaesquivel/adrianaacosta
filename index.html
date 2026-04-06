@@ -507,22 +507,41 @@
       border-bottom: 1px solid var(--gris-claro);
     }
 
-    /* Colores por institución — clases en la card directamente */
-    /* Títulos de institución con su color */
-    .group-portschool .institution-name,
-    .group-portschool .institution-header { border-bottom-color: #A8D4E4; }
-    .group-portschool .institution-name { color: #1A6A8A; }
+    /* Colores por institución — fondo integrado en el header del grupo */
+    .group-portschool .institution-header {
+      background: #D6EEF5;
+      border-bottom: 2px solid #A8D4E4;
+      padding: 14px 20px;
+      border-radius: 10px;
+      margin-bottom: 16px;
+    }
+    .group-portschool .institution-name { color: #1A4A5A; }
 
-    .group-innertable .institution-name,
-    .group-innertable .institution-header { border-bottom-color: #c2e855; }
+    .group-innertable .institution-header {
+      background: var(--verde);
+      border-bottom: 2px solid #c2e855;
+      padding: 14px 20px;
+      border-radius: 10px;
+      margin-bottom: 16px;
+    }
     .group-innertable .institution-name { color: var(--verde-dark); }
 
-    .group-consultorio .institution-name,
-    .group-consultorio .institution-header { border-bottom-color: #F5C9A8; }
+    .group-consultorio .institution-header {
+      background: #FFE8D6;
+      border-bottom: 2px solid #F5C9A8;
+      padding: 14px 20px;
+      border-radius: 10px;
+      margin-bottom: 16px;
+    }
     .group-consultorio .institution-name { color: #7A3A10; }
 
-    .group-alas .institution-name,
-    .group-alas .institution-header { border-bottom-color: #C8B4E8; }
+    .group-alas .institution-header {
+      background: #EAE0F5;
+      border-bottom: 2px solid #C8B4E8;
+      padding: 14px 20px;
+      border-radius: 10px;
+      margin-bottom: 16px;
+    }
     .group-alas .institution-name { color: #3A1A6A; }
 
     /* Label del carrusel mobile con color por institución */
@@ -995,12 +1014,13 @@
         scroll-snap-align: center;
       }
       .carousel-institution-label {
-        font-size: 0.72rem;
+        font-size: 0.68rem;
         font-weight: 700;
-        letter-spacing: 0.1em;
+        letter-spacing: 0.12em;
         text-transform: uppercase;
         color: var(--gris);
-        padding: 16px 20px 0;
+        margin-bottom: 10px;
+        display: block;
       }
       .carousel-dots {
         display: flex;
@@ -1619,7 +1639,8 @@
           const label = document.createElement('div');
           label.className = 'carousel-institution-label';
           label.textContent = institutionName;
-          card.insertBefore(label, card.firstChild);
+          const cardHeader = card.querySelector('.project-card-header');
+          cardHeader.insertBefore(label, cardHeader.firstChild);
           carousel.appendChild(card);
         });
       });
